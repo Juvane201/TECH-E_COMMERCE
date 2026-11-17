@@ -1,0 +1,63 @@
+# ==========================================
+# === FICHIERS DE SÉCURITÉ ET SYSTÈME ======
+# ==========================================
+# Variables d'environnement (ne jamais envoyer les secrets)
+.env
+.env.local
+*.env
+
+# Fichiers générés par le système d'exploitation
+.DS_Store
+Thumbs.db
+
+# Fichiers de log
+*.log
+
+# ==========================================
+# === FRONTEND : ANGULAR (dossier angular1) 
+# ==========================================
+# Dépendances Node.js
+angular1/node_modules/
+
+# Dossier de build / distribution
+angular1/dist/
+angular1/out-tsc/
+angular1/tmp/
+angular1/src/app/*.js
+angular1/src/app/*.js.map
+
+# Fichiers de cache Angular
+angular1/.angular/
+angular1/.cache/
+
+# ==========================================
+# === BACKEND : SPRING BOOT (dossier PROJETSPRINGB)
+# ==========================================
+# Dossiers de build Maven / Gradle
+PROJETSPRINGB/target/
+PROJETSPRINGB/build/
+PROJETSPRINGB/out/
+
+# Fichiers de configuration locaux de Spring
+PROJETSPRINGB/src/main/resources/application.properties
+PROJETSPRINGB/src/main/resources/application.yml
+PROJETSPRINGB/src/main/resources/application-*.properties
+PROJETSPRINGB/src/main/resources/application-*.yml
+
+# Fichiers IDE pour Java (Eclipse / IntelliJ)
+PROJETSPRINGB/.mvn/
+PROJETSPRINGB/mvnw
+PROJETSPRINGB/mvnw.cmd
+PROJETSPRINGB/.gradle/
+PROJETSPRINGB/.settings/
+PROJETSPRINGB/.classpath
+PROJETSPRINGB/.project
+PROJETSPRINGB/.idea/
+PROJETSPRINGB/*.iml
+
+# ==========================================
+# === IDE / ÉDITEURS DE TEXTE ==============
+# ==========================================
+.vscode/
+.idea/
+*.swp

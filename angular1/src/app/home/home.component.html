@@ -1,0 +1,36 @@
+<header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <a class="navbar-brand" href="#">Accessoires Informatiques</a>
+            <div class="collapse navbar-collapse">
+              <input type="text" class="form-control w-25" placeholder="Rechercher..." (input)="rechercher($event)">
+              <div class="ms-auto d-flex align-items-center">
+                <button class="btn btn-panier me-2">Panier ({{ panier.length }})</button>
+                <button class="btn btn-success" (click)="validerPanier()">Valider</button>
+              </div>
+              <div class="categories mt-2">
+                <span *ngFor="let cat of categories" (click)="afficherCategorie(cat.nom)" class="badge bg-secondary me-2">{{ cat.nom }}</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+<div class="container">
+        <h2 class="my-4 text-center">Produits Récents</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let produit of produitsRecents">
+            <div class="card h-100">
+              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="{{ produit.nom }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ produit.nom }}</h5>
+                <p class="card-text">{{ produit.description }}</p>
+                <p class="card-text">Stock: {{ produit.stock }} | Prix: {{ produit.prix }}Ar</p>
+                <button class="btn btn-ajouter" (click)="ajouterAuPanier(produit)" [disabled]="produit.stock === 0">
+                  Ajouter au panier
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

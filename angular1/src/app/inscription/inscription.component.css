@@ -1,0 +1,30 @@
+/* Formulaires */
+form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+form input {
+  border-radius: 25px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+}
+
+form button {
+  background: #8e44ad;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  width: 100%;
+  color: white;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #732d91;
+}

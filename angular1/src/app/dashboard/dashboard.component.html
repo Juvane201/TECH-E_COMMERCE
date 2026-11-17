@@ -1,0 +1,169 @@
+<main class="main-content" id="mainContent">
+
+  <!-- ============ HERO BANNER ============ -->
+  <div class="hero-banner">
+    <div class="hero-bg">
+   
+    </div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1 class="hero-title"> Bonjour </h1>
+      </div>
+      <div class="hero-right">
+        <div class="date-filter-wrap">
+          <label class="date-label">  Période </label>
+          <select class="filter-select" (change)="onDateFilterChange($event)">
+            <option value="today">Aujourd'hui</option>
+            <option value="week" selected>Cette semaine</option>
+            <option value="month">Ce mois</option>
+            <option value="year">Cette année</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STATS CARDS ============ -->
+  <div class="stats-grid">
+    <div class="stat-card" data-aos="fade-up">
+      <div class="stat-bg-icon products"><i class="fas fa-box"></i></div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <div class="stat-icon-container products"><i class="fas fa-box"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">Produits Total</span>
+            <h3 class="stat-value">{{ formatNumber(stats.produits) || 0 }}</h3>
+          </div>
+        </div>
+        <div class="stat-footer">
+          <div class="stat-trend neutral" *ngIf="stats.produitsChange === 0">
+            <i class="fas fa-minus"></i><span>Stable</span>
+          </div>
+          <span class="stat-period">ce mois</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stat-bg-icon clients"><i class="fas fa-users"></i></div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <div class="stat-icon-container clients"><i class="fas fa-users"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">Clients Actifs</span>
+            <h3 class="stat-value">{{ formatNumber(stats.clients) || 0 }}</h3>
+          </div>
+        </div>
+        <div class="stat-footer">
+        
+          <span class="stat-period">ce mois</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stat-bg-icon sales"><i class="fas fa-shopping-cart"></i></div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <div class="stat-icon-container sales"><i class="fas fa-shopping-cart"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">Commandes</span>
+            <h3 class="stat-value">{{ formatNumber(stats.ventes) || 0 }}</h3>
+          </div>
+        </div>
+        <div class="stat-footer">
+          <div class="stat-trend positive" *ngIf="stats.ventesChange > 0">
+          </div>
+          <div class="stat-trend negative" *ngIf="stats.ventesChange < 0">
+          </div>
+          <span class="stat-period">ce mois</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="stat-bg-icon revenue"><i class="fas fa-dollar-sign"></i></div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <div class="stat-icon-container revenue"><i class="fas fa-dollar-sign"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">Revenus Total</span>
+            <h3 class="stat-value">{{ formatNumber(stats.revenus) || 0 }} Ar</h3>
+          </div>
+        </div>
+        <div class="stat-footer">
+          <div class="stat-trend positive" *ngIf="stats.revenusChange > 0">
+            <i class="fas fa-arrow-up"></i><span>{{ stats.revenusChange || 0 }}%</span>
+          </div>
+          <div class="stat-trend negative" *ngIf="stats.revenusChange < 0">
+            <i class="fas fa-arrow-down"></i><span>{{ Math.abs(stats.revenusChange) || 0 }}%</span>
+          </div>
+          <div class="stat-trend neutral" *ngIf="stats.revenusChange === 0">
+            <i class="fas fa-minus"></i><span>Stable</span>
+          </div>
+          <span class="stat-period">ce mois</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OBJECTIFS MENSUELS (Progress Bars) ============ -->
+  <div class="objectifs-section" data-aos="fade-up">
+    <div class="objectifs-card">
+      <div class="objectifs-header">
+        <div>
+          <h3 class="objectifs-title"> Objectifs du mois</h3>
+        </div>
+        <span class="objectifs-badge">{{ objectifs.length }} objectifs</span>
+      </div>
+      <div class="objectifs-grid">
+        <div class="objectif-item" *ngFor="let obj of objectifs; let i = index">
+          <div class="objectif-header">
+            <span class="objectif-label">{{ obj.label }}</span>
+            <span class="objectif-pct">{{ getPourcentage(obj.actuel, obj.cible) }}%</span>
+          </div>
+          <div class="objectif-bar">
+            <div class="objectif-fill" [style.width.%]="getPourcentage(obj.actuel, obj.cible)" [style.animation-delay]="(i * 0.15) + 's'"></div>
+          </div>
+          <div class="objectif-stats">
+            <span>{{ formatNumber(obj.actuel) }} {{ obj.unite }}</span>
+            <span class="objectif-cible">/ {{ formatNumber(obj.cible) }} {{ obj.unite }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ACTIVITÉ RÉCENTE ============ -->
+  <div class="activity-section" data-aos="fade-up">
+    <div class="activity-card">
+      <div class="card-header">
+        <div class="card-title-section">
+          <h3 class="card-title"><i class="fas fa-clock-rotate-left"></i> Activité Récente</h3>
+          <p class="card-subtitle">{{ activities.length }} événements récents</p>
+        </div>
+        <div class="card-actions">
+          <a href="#" class="view-all">Voir tout <i class="fas fa-arrow-right"></i></a>
+          <button class="export-btn" (click)="exportActivities()"><i class="fas fa-download"></i> Exporter</button>
+        </div>
+      </div>
+      <div class="activity-list">
+        <div class="activity-item" *ngFor="let activity of activities; let i = index" [class.new]="isNewActivity(activity.date)" [style.animation-delay]="(i * 0.08) + 's'">
+          <div class="activity-icon"><i [class]="getActivityIcon(activity.type)"></i></div>
+          <div class="activity-content">
+            <p class="activity-description">{{ activity.description }}</p>
+            <span class="activity-time"><i class="fas fa-clock"></i> {{ formatActivityTime(activity.date) }}</span>
+          </div>
+          <div class="activity-badge" [class]="getActivityBadgeClass(activity.type)">
+            {{ getActivityTypeLabel(activity.type) }}
+          </div>
+        </div>
+        <div class="empty-state" *ngIf="activities.length === 0">
+          <i class="fas fa-chart-line"></i>
+          <p>Aucune activité récente</p>
+          <span>Les activités apparaîtront ici</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

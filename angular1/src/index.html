@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>TechStore</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- ✅ CORRECTION : Content Security Policy pour autoriser les images externes -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+                 img-src 'self' data: blob: https: http://localhost:4200 http://localhost:8080 https://images.unsplash.com https://via.placeholder.com;
+                 style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+                 font-src 'self' https://cdnjs.cloudflare.com;
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval';
+                 connect-src 'self' http://localhost:8080">
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://js.stripe.com/v3/"></script>
+</body>
+</html>

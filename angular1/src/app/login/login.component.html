@@ -1,0 +1,154 @@
+<div class="login-container">
+  <!-- Décor animé -->
+  <div class="bg-decor">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Welcome Spinner -->
+  <div *ngIf="showWelcomeSpinner" class="welcome-overlay">
+    <div class="welcome-spinner">
+      <div class="spinner-circle"></div>
+      <div class="welcome-text">{{ welcomeMessage }}</div>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-card">
+    <!-- Left Side - Illustration -->
+    <div class="login-illustration">
+      <div class="illustration-content">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h2>TechStore Admin</h2>
+        </div>
+
+        <h3 class="illustration-title">
+          Bienvenue sur votre <span class="accent">espace sécurisé</span>
+        </h3>
+        <p class="illustration-text">
+          Gérez vos produits, clients et paiements en toute simplicité depuis un tableau de bord moderne et intuitif.
+        </p>
+
+        <div class="illustration-graphic">
+          <div class="floating-element el1"></div>
+          <div class="floating-element el2"></div>
+          <div class="floating-element el3"></div>
+          <div class="floating-element el4"></div>
+        </div>
+
+        <div class="illustration-features">
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>Sécurisé</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <span>Rapide</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-chart-line"></i>
+            <span>Performant</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="login-form">
+      <div class="form-header">
+        <h1>Connexion</h1>
+        <p>Accédez à votre compte administrateur</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email ou Identifiant</label>
+          <div class="input-container">
+            <i class="fas fa-user input-icon"></i>
+            <input
+              id="email"
+              type="text"
+              formControlName="email"
+              placeholder="Entrez votre identifiant"
+              class="form-input"
+              [class.error]="email?.invalid && email?.touched">
+          </div>
+          <div *ngIf="email?.invalid && email?.touched" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span *ngIf="email?.errors?.['required']">L'email est requis</span>
+            <span *ngIf="email?.errors?.['email']">Format d'email invalide</span>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="motDePasse">Mot de passe</label>
+          <div class="input-container">
+            <i class="fas fa-lock input-icon"></i>
+            <input
+              id="motDePasse"
+              type="password"
+              formControlName="motDePasse"
+              placeholder="••••••••"
+              class="form-input"
+              [class.error]="motDePasse?.invalid && motDePasse?.touched">
+          </div>
+          <div *ngIf="motDePasse?.invalid && motDePasse?.touched" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span *ngIf="motDePasse?.errors?.['required']">Le mot de passe est requis</span>
+            <span *ngIf="motDePasse?.errors?.['minlength']">Minimum 6 caractères</span>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="form-options">
+          <label class="checkbox-container">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            Se souvenir de moi
+          </label>
+          <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="login-btn"
+          [disabled]="loginForm.invalid || isLoading">
+          <span *ngIf="!isLoading">
+            <i class="fas fa-sign-in-alt"></i>
+            Se connecter
+          </span>
+          <div *ngIf="isLoading" class="button-spinner">
+            <div class="spinner"></div>
+            Connexion...
+          </div>
+        </button>
+
+        <!-- Demo Credentials -->
+        <div class="demo-credentials">
+          <div class="demo-header">
+            <i class="fas fa-key"></i>
+            <span>Accès Admin (Démo)</span>
+          </div>
+          <div class="demo-info">
+            <div><strong>Identifiant :</strong> rjnantenaina</div>
+            <div><strong>Mot de passe :</strong> 111111</div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Footer -->
+      <div class="form-footer">
+        <p>© 2024 TechStore Admin. Tous droits réservés.</p>
+      </div>
+    </div>
+  </div>
+</div>

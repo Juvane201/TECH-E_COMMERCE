@@ -1,0 +1,30 @@
+
+<section style="display: flex; width: 100vw;height: 100vh; justify-content: space-between;">
+    <div class="card"  style="width: 30vw; height: 50vh">
+        <div class="desc">
+                <div class="dsc" ></div>
+                <div style="display: flex; justify-content: space-between;">
+                       @if(product.nomProd){ 
+                        <div class="">
+                                <p style="color: #0000ff; font-size: 21px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{product.nomProd}}</p>
+                                <i class="fa fa-heart"></i>
+                                <p style="font-size: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">RAM: 16G</p>
+                        </div>
+                }
+                        <div>
+                                <p style="font-size: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;"></p>
+                                <div style="display: flex;  justify-content: flex-start; align-items: center;">
+                                        <button class="btn"><i class="fa fa-minus" style="font-size: 16px;"></i></button>
+                                        <div> <p>133</p></div>
+                                        <button class="btn"><i class="fa fa-plus" style="margin-left: 10px; "></i></button>            
+                                        
+                                </div>
+                        </div>
+
+                </div>
+                
+                <app-bttn-primary (click)="addCart(product)" label="Ajouter au panier"></app-bttn-primary>        
+        </div>
+
+        </div>
+</section>

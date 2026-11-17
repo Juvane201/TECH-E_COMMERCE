@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="inscriptionForm" (ngSubmit)="inscription()" class="mt-5">
+    <h2 class="text-center mb-4">Inscription</h2>
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="nom"
+        placeholder="Nom"
+        [class.is-invalid]="inscriptionForm.get('nom')?.invalid && inscriptionForm.get('nom')?.touched"
+      >
+      <div *ngIf="inscriptionForm.get('nom')?.invalid && inscriptionForm.get('nom')?.touched" class="invalid-feedback">
+        Le nom est requis.
+      </div>
+    </div>
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Email"
+        [class.is-invalid]="inscriptionForm.get('email')?.invalid && inscriptionForm.get('email')?.touched"
+      >
+      <div *ngIf="inscriptionForm.get('email')?.invalid && inscriptionForm.get('email')?.touched" class="invalid-feedback">
+        Veuillez entrer un email valide.
+      </div>
+    </div>
+    <div class="mb-3">
+      <input
+        type="password"
+        class="form-control"
+        formControlName="motDePasse"
+        placeholder="Mot de passe"
+        [class.is-invalid]="inscriptionForm.get('motDePasse')?.invalid && inscriptionForm.get('motDePasse')?.touched"
+      >
+      <div *ngIf="inscriptionForm.get('motDePasse')?.invalid && inscriptionForm.get('motDePasse')?.touched" class="invalid-feedback">
+        Le mot de passe doit contenir au moins 6 caractères.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="inscriptionForm.invalid">S'inscrire</button>
+  </form>
+</div>
